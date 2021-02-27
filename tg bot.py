@@ -64,7 +64,7 @@ def callback_inline(call):
         if call.data == 'test6':
             bot.send_message(call.message.chat.id, 'https://t.me/addstickers/aniketanimated')
             bot.send_sticker(call.message.chat.id, 'CAACAgUAAxkBAAEB5fRgMO5ZYF2lcHcIhdMRHhZfe9Gx6gAC3wADpvbGETp5AU4j032MHgQ')
-        if call.data == 'cat1':
+        if call.data == 'cat_1':
             bot.send_message(call.message.chat.id, 'Сейчас выдам доступные смайлики на тему "Животные"', reply_markup=keyboard3)
         if call.data == 'cat2':
             bot.send_message(call.message.chat.id, 'Сейчас выдам доступные смайлики на тему "Супергерои"', reply_markup=keyboard5)
