@@ -4,11 +4,16 @@ from telebot import types
 bot = telebot.TeleBot('1522095402:AAEW-0hltyEka9AfC-MBVscRM0wXjWPd3Jo')
 keyboard1 = telebot.types.ReplyKeyboardMarkup(resize_keyboard=True)
 keyboard3 = types.InlineKeyboardMarkup(row_width=1)
-item5 = types.InlineKeyboardButton(emoji.emojize(":large_orange_diamond: что-то анимешное :large_orange_diamond:"), callback_data='test3')
-item6 = types.InlineKeyboardButton(emoji.emojize(":large_orange_diamond: Живые смайлики каво :large_orange_diamond:"), callback_data='test4')
-item8 = types.InlineKeyboardButton(emoji.emojize(":large_orange_diamond: Микс-стикерпак :large_orange_diamond:"), callback_data='test6')
+item5 = types.InlineKeyboardButton(emoji.emojize(":cat: Круглый Котик :cat:"), callback_data='animal_1')
+item6 = types.InlineKeyboardButton(emoji.emojize(":rabbit: Кролик Супчик :rabbit:"), callback_data='animal_2')
+item8 = types.InlineKeyboardButton(emoji.emojize(":dog: Ветерок :dog:"), callback_data='animal_3')
+keyboard5 = types.InlineKeyboardMarkup(row_width=1)
 keyboard4 = types.InlineKeyboardMarkup(row_width=1)
-category1 = types.InlineKeyboardButton(emoji.emojize(":bear: Животные :bear:"), callback_data='cat1')
+sup1 = types.InlineKeyboardButton(emoji.emojize(":bear: Животные :bear:"), callback_data='sup_1')
+sup2 = types.InlineKeyboardButton(emoji.emojize(":alien: Супергерои :alien:"), callback_data='sup_2')
+sup3 = types.InlineKeyboardButton(emoji.emojize(":eyes: Мемы :eyes:"), callback_data='sup_3')
+keyboard5.add(sup1,sup2,sup3)
+category1 = types.InlineKeyboardButton(emoji.emojize(":bear: Животные :bear:"), callback_data='cat_1')
 category2 = types.InlineKeyboardButton(emoji.emojize(":alien: Супергерои :alien:"), callback_data='cat2')
 category3 = types.InlineKeyboardButton(emoji.emojize(":eyes: Мемы :eyes:"), callback_data='cat3')
 keyboard4.add(category1,category2,category3)
@@ -44,9 +49,15 @@ def callback_inline(call):
         if call.data == 'test2':
             bot.send_message(call.message.chat.id, 'https://t.me/addstickers/yoda_ny_vk')
             bot.send_sticker(call.message.chat.id, 'CAACAgIAAxkBAAEB5WxgMBc3xqnXoCaWAcrYMcwxfV3A1wACijIAAulVBRipuIgSwhikOR4E')
-        if call.data == 'test3':
-            bot.send_message(call.message.chat.id, 'https://t.me/addstickers/Mafumafu_cat_by_cocopry')
-            bot.send_sticker(call.message.chat.id, 'CAACAgQAAxkBAAEB5W5gMBg3jATgOCpeNapgyNbQz6GIxwACmAADS2nuEPGZmZgskmj3HgQ')
+        if call.data == 'animal_1':
+            bot.send_message(call.message.chat.id, 'https://t.me/addstickers/Animated_Round_Pretty_Cat')
+            bot.send_sticker(call.message.chat.id, 'CAACAgIAAxkBAAEB7b1gOiKttKvHv9JM4GwJ0R-OmxDzVAACfBIAAujW4hJj7B-YkKSgqx4E')
+        if call.data == 'animal_2':
+            bot.send_message(call.message.chat.id, 'https://t.me/addstickers/suppy_anim')
+            bot.send_sticker(call.message.chat.id, 'CAACAgIAAxkBAAEB7b9gOiNZ9idcyFexA1W7CFfP5rvXYAACByMAAulVBRj8wpsP_DYPnR4E')
+        if call.data == 'animal_3':
+            bot.send_message(call.message.chat.id, 'https://t.me/addstickers/veter_anim')
+            bot.send_sticker(call.message.chat.id, 'CAACAgIAAxkBAAEB7clgOiU3kRYs78g1Mj97KqaLjlF_9wACASUAAulVBRiLUp-pp22ZQR4E')
         if call.data == 'test4':
             bot.send_message(call.message.chat.id, 'https://t.me/addstickers/f_weyjrjak_896383854_by_fStikBot')
             bot.send_sticker(call.message.chat.id, 'CAACAgIAAxkBAAEB5XBgMBhJbQhOGWw6x5IO-oLtI90UyQACGwADbrttNSiap30tt3brHgQ')
@@ -55,6 +66,7 @@ def callback_inline(call):
             bot.send_sticker(call.message.chat.id, 'CAACAgUAAxkBAAEB5fRgMO5ZYF2lcHcIhdMRHhZfe9Gx6gAC3wADpvbGETp5AU4j032MHgQ')
         if call.data == 'cat1':
             bot.send_message(call.message.chat.id, 'Сейчас выдам доступные смайлики на тему "Животные"', reply_markup=keyboard3)
-
+        if call.data == 'cat2':
+            bot.send_message(call.message.chat.id, 'Сейчас выдам доступные смайлики на тему "Супергерои"', reply_markup=keyboard5)
 bot.polling()
     
