@@ -15,7 +15,7 @@ sup3 = types.InlineKeyboardButton(emoji.emojize(":eyes: Мемы :eyes:"), callb
 keyboard5.add(sup1,sup2,sup3)
 category1 = types.InlineKeyboardButton(emoji.emojize(":bear: Животные :bear:"), callback_data='cat_1')
 category2 = types.InlineKeyboardButton(emoji.emojize(":alien: Супергерои :alien:"), callback_data='cat2')
-category3 = types.InlineKeyboardButton(emoji.emojize(":eyes: Мемы :eyes:"), callback_data='cat3')
+category3 = types.InlineKeyboardButton(emoji.emojize(":clown_face: Мемы :clown_face:"), callback_data='cat3')
 keyboard4.add(category1,category2,category3)
 keyboard3.add(item5,item6,item8)
 keyboard2 = types.InlineKeyboardMarkup(row_width=1)
@@ -26,6 +26,11 @@ keyboard2.add(item3,item4,item7)
 item1 = types.KeyboardButton(emoji.emojize(":large_blue_diamond: Обычные стикеры"))
 item2 = types.KeyboardButton(emoji.emojize(":large_orange_diamond: Анимированные стикеры"))
 keyboard1.add(item1,item2)
+memeboard = types.InlineKeyboardMarkup(row_width=1)
+memebut1 = types.InlineKeyboardButton(emoji.emojize(":skull: Троллфейс :skull:"), callback_data='meme_1')
+memebut2 = types.InlineKeyboardButton(emoji.emojize(":frog: Пепе :frog:"), callback_data='meme_2')
+memebut3 = types.InlineKeyboardButton(emoji.emojize(":frog: Пепе-Клоун :frog:"), callback_data='meme_3')
+memeboard.add(memebut1,memebut2,memebut3)
 @bot.message_handler(commands=['start'])
 def start_message(message):
     bot.send_message(message.chat.id, emoji.emojize('Привет. Я могу посоветовать тебе огромное количество стикеров на любой вкус и цвет!  :green_heart: '))
@@ -67,6 +72,17 @@ def callback_inline(call):
         if call.data == 'cat_1':
             bot.send_message(call.message.chat.id, 'Сейчас выдам доступные смайлики на тему "Животные"', reply_markup=keyboard3)
         if call.data == 'cat2':
-            bot.send_message(call.message.chat.id, 'Сейчас выдам доступные смайлики на тему "Супергерои"', reply_markup=keyboard5)
+            bot.send_message(call.message.chat.id, 'К сожалению, тут ничего нет! \nВозвращаю обратно к категориям', reply_markup=keyboard4)
+        if call.data == 'cat3':
+            bot.send_message(call.message.chat.id, 'Сейчас выдам доступные смайлики на тему "Мемы"', reply_markup=memeboard)
+        if call.data == 'meme_1':
+            bot.send_message(call.message.chat.id, 'https://t.me/addstickers/Troll_animated_by_cocopry')
+            bot.send_sticker(call.message.chat.id, 'CAACAgQAAxkBAAEB7jpgOnXqAAFCqYFL0u0aps6zKjEq6JQAAtoAA0tp7hBdnkswEYL7oR4E')
+        if call.data == 'meme_2':
+            bot.send_message(call.message.chat.id, 'https://t.me/addstickers/Peepo_Pepe')
+            bot.send_sticker(call.message.chat.id, 'CAACAgQAAxkBAAEB7jxgOngUrLy53xS5JLgiipWYKl8EWAACQwEAAqghIQZgSyUtPd-rIB4E')
+        if call.data == 'meme_3':
+            bot.send_message(call.message.chat.id, 'https://t.me/addstickers/honka_animated')
+            bot.send_sticker(call.message.chat.id, 'CAACAgIAAxkBAAEB7j5gOnmWJBhG5MoYnEhGNcK8JbtviQACpgADq1fEC6lAX0hqfPJfHgQ')
 bot.polling()
     
