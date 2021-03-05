@@ -1,8 +1,10 @@
 import telebot
 import emoji
+from requests import get
 from telebot import types
 bot = telebot.TeleBot('1522095402:AAEW-0hltyEka9AfC-MBVscRM0wXjWPd3Jo')
 keyboard1 = telebot.types.ReplyKeyboardMarkup(resize_keyboard=True)
+testimg = types.InlineKeyboardButton("Send Image", callback_data='image')
 keyboard3 = types.InlineKeyboardMarkup(row_width=1)
 item5 = types.InlineKeyboardButton(emoji.emojize(":cat: Круглый Котик :cat:"), callback_data='animal_1')
 item6 = types.InlineKeyboardButton(emoji.emojize(":rabbit: Кролик Супчик :rabbit:"), callback_data='animal_2')
@@ -25,7 +27,7 @@ item7 = types.InlineKeyboardButton(emoji.emojize(":large_blue_diamond: Маст�
 keyboard2.add(item3,item4,item7)
 item1 = types.KeyboardButton(emoji.emojize(":large_blue_diamond: Обычные стикеры"))
 item2 = types.KeyboardButton(emoji.emojize(":large_orange_diamond: Анимированные стикеры"))
-keyboard1.add(item1,item2)
+keyboard1.add(item1,item2,testimg)
 memeboard = types.InlineKeyboardMarkup(row_width=1)
 memebut1 = types.InlineKeyboardButton(emoji.emojize(":skull: Троллфейс :skull:"), callback_data='meme_1')
 memebut2 = types.InlineKeyboardButton(emoji.emojize(":frog: Пепе :frog:"), callback_data='meme_2')
@@ -45,6 +47,8 @@ def send_text(message):
         bot.send_message(message.chat.id, 'Прощай, создатель')
     elif message.text.lower() == 'я тебя люблю':
         bot.send_sticker(message.chat.id, 'CAADAgADZgkAAnlc4gmfCor5YbYYRAI')
+    elif message.text == 'Send Image':
+        bot.send_photo(message.chat.id, 'https://imbt.ga/6hfCklKOGj', caption='гвоздь мне в кеды')
 @bot.callback_query_handler(func=lambda call: True)
 def callback_inline(call):
     if call.message:
