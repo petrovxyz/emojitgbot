@@ -4,8 +4,13 @@ from requests import get
 from telebot import types
 bot = telebot.TeleBot('1522095402:AAEW-0hltyEka9AfC-MBVscRM0wXjWPd3Jo')
 keyboard1 = telebot.types.ReplyKeyboardMarkup(resize_keyboard=True)
-testimg = types.InlineKeyboardButton("Send Image", callback_data='image')
 keyboard3 = types.InlineKeyboardMarkup(row_width=1)
+nextboard = types.InlineKeyboardMarkup(row_width=1)
+nextbut = types.InlineKeyboardButton(emoji.emojize("Следующий стикер!"), callback_data='nextbut_1')
+nextboard.add(nextbut)
+nextboard1 = types.InlineKeyboardMarkup(row_width=1)
+nextbut1 = types.InlineKeyboardButton(emoji.emojize("Следующий стикер!"), callback_data='nextbut_2')
+nextboard1.add(nextbut1)
 item5 = types.InlineKeyboardButton(emoji.emojize(":cat: Круглый Котик :cat:"), callback_data='animal_1')
 item6 = types.InlineKeyboardButton(emoji.emojize(":rabbit: Кролик Супчик :rabbit:"), callback_data='animal_2')
 item8 = types.InlineKeyboardButton(emoji.emojize(":dog: Ветерок :dog:"), callback_data='animal_3')
@@ -21,13 +26,13 @@ category3 = types.InlineKeyboardButton(emoji.emojize(":clown_face: Мемы :clo
 keyboard4.add(category1,category2,category3)
 keyboard3.add(item5,item6,item8)
 keyboard2 = types.InlineKeyboardMarkup(row_width=1)
-item3 = types.InlineKeyboardButton(emoji.emojize(":large_blue_diamond: Elon Musk :large_blue_diamond:"), callback_data='test1')
+item3 = types.InlineKeyboardButton(emoji.emojize(":large_blue_diamond: Илон Маск :large_blue_diamond:"), callback_data='test1')
 item4 = types.InlineKeyboardButton(emoji.emojize(":large_blue_diamond: Мастер Йода! :large_blue_diamond:") , callback_data='test2')
-item7 = types.InlineKeyboardButton(emoji.emojize(":large_blue_diamond: Мастер Йода! :large_blue_diamond:"), callback_data='test5')
+item7 = types.InlineKeyboardButton(emoji.emojize(":large_blue_diamond: Чертёнок Лютик :large_blue_diamond:"), callback_data='test5')
 keyboard2.add(item3,item4,item7)
 item1 = types.KeyboardButton(emoji.emojize(":large_blue_diamond: Обычные стикеры"))
 item2 = types.KeyboardButton(emoji.emojize(":large_orange_diamond: Анимированные стикеры"))
-keyboard1.add(item1,item2,testimg)
+keyboard1.add(item1,item2)
 memeboard = types.InlineKeyboardMarkup(row_width=1)
 memebut1 = types.InlineKeyboardButton(emoji.emojize(":skull: Троллфейс :skull:"), callback_data='meme_1')
 memebut2 = types.InlineKeyboardButton(emoji.emojize(":frog: Пепе :frog:"), callback_data='meme_2')
@@ -47,17 +52,29 @@ def send_text(message):
         bot.send_message(message.chat.id, 'Прощай, создатель')
     elif message.text.lower() == 'я тебя люблю':
         bot.send_sticker(message.chat.id, 'CAADAgADZgkAAnlc4gmfCor5YbYYRAI')
-    elif message.text == 'Send Image':
-        bot.send_photo(message.chat.id, 'https://imbt.ga/6hfCklKOGj', caption='гвоздь мне в кеды')
 @bot.callback_query_handler(func=lambda call: True)
 def callback_inline(call):
     if call.message:
         if call.data == 'test1':
+            bot.send_photo(call.message.chat.id, 'https://imbt.ga/1BWggio5Rv', caption='Илон Маск!')
             bot.send_message(call.message.chat.id, 'https://t.me/addstickers/StarmanMusk')
-            bot.send_sticker(call.message.chat.id, 'CAACAgIAAxkBAAEB5WpgMBbDuvZYd8j0qRgSSOVrA7I2EgACjwgAAnlc4gnodoxFNb6Zvx4E')
-        if call.data == 'test2':
+            bot.send_sticker(call.message.chat.id, 'CAACAgIAAxkBAAEB5WpgMBbDuvZYd8j0qRgSSOVrA7I2EgACjwgAAnlc4gnodoxFNb6Zvx4E', reply_markup=nextboard1)
+        if call.data == 'nextbut_1':
+            bot.send_photo(call.message.chat.id, 'https://imbt.ga/cBEk1VbIso', caption='Чертёнок Лютик!')
+            bot.send_message(call.message.chat.id, 'https://t.me/addstickers/lutik_vk')
+            bot.send_sticker(call.message.chat.id, 'CAACAgIAAxkBAAEB9XlgQ1z8fyS3PpxK5L9D4oA_IGwpagACty0AAulVBRhfcRJ-DsDdMx4E')
+        if call.data == 'nextbut_2':
+            bot.send_photo(call.message.chat.id, 'https://imbt.ga/REv4VuwQ40', caption='Мастер Йода!')
             bot.send_message(call.message.chat.id, 'https://t.me/addstickers/yoda_ny_vk')
-            bot.send_sticker(call.message.chat.id, 'CAACAgIAAxkBAAEB5WxgMBc3xqnXoCaWAcrYMcwxfV3A1wACijIAAulVBRipuIgSwhikOR4E')
+            bot.send_sticker(call.message.chat.id, 'CAACAgIAAxkBAAEB5WxgMBc3xqnXoCaWAcrYMcwxfV3A1wACijIAAulVBRipuIgSwhikOR4E', reply_markup=nextboard)
+        if call.data == 'test2':
+            bot.send_photo(call.message.chat.id, 'https://imbt.ga/REv4VuwQ40', caption='Мастер Йода!')
+            bot.send_message(call.message.chat.id, 'https://t.me/addstickers/yoda_ny_vk')
+            bot.send_sticker(call.message.chat.id, 'CAACAgIAAxkBAAEB5WxgMBc3xqnXoCaWAcrYMcwxfV3A1wACijIAAulVBRipuIgSwhikOR4E', reply_markup=nextboard)
+        if call.data == 'test5':
+            bot.send_photo(call.message.chat.id, 'https://imbt.ga/cBEk1VbIso', caption='Чертёнок Лютик!')
+            bot.send_message(call.message.chat.id, 'https://t.me/addstickers/lutik_vk')
+            bot.send_sticker(call.message.chat.id, 'CAACAgIAAxkBAAEB9XlgQ1z8fyS3PpxK5L9D4oA_IGwpagACty0AAulVBRhfcRJ-DsDdMx4E')
         if call.data == 'animal_1':
             bot.send_message(call.message.chat.id, 'https://t.me/addstickers/Animated_Round_Pretty_Cat')
             bot.send_sticker(call.message.chat.id, 'CAACAgIAAxkBAAEB7b1gOiKttKvHv9JM4GwJ0R-OmxDzVAACfBIAAujW4hJj7B-YkKSgqx4E')
